@@ -27,8 +27,12 @@ RUN pipx install solc-select
 
 # Foundry at specific version
 RUN curl -L https://foundry.paradigm.xyz | zsh
+<<<<<<< HEAD
 
 RUN foundryup --version nightly-2044faec64f99a21f0e5f0094458a973612d0712
+=======
+RUN foundryup --version nightly-cafc2606a2187a42b236df4aa65f4e8cdfcea970
+>>>>>>> e14ea03 (add dot files and devcontainer)
 
 # Clean up
 RUN sudo apt-get autoremove -y && sudo apt-get clean -y
