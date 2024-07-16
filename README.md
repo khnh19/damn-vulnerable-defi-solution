@@ -14,7 +14,11 @@ Use Damn Vulnerable DeFi to:
 ## Install
 
 1. Clone the repository.
+<<<<<<< HEAD
 2. Checkout the latest release (for example, `git checkout v4.0.1`)
+=======
+2. Checkout the latest release (for example, `git checkout v4.0.0`)
+>>>>>>> d22e107 (improve instructions)
 3. Rename the `.env.sample` file to `.env` and add a valid RPC URL. This is only needed for the challenges that fork mainnet state.
 4. Either install [Foundry](https://book.getfoundry.sh/getting-started/installation), or use the [provided devcontainer](./.devcontainer/) (In VSCode, open the repository as a devcontainer with the command "Devcontainer: Open Folder in Container...")
 5. Run `forge build` to initialize the project.
