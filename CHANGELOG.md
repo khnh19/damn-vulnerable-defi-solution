@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.0.2
+
+- Use Foundry stable in devcontainer
+- Update libraries (OZ Contracts, forge-std)
+- Update instances of `vm.expectRevert`
+- Fix comments
+- Explicitly enable optimizer in `foundry.toml`
+
 ## v4.0.1
 
 - Updated README instructions to include `--isolate` mode (https://github.com/theredguild/damn-vulnerable-defi/pull/77)
