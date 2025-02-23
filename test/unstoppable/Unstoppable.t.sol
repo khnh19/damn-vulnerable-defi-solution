@@ -85,7 +85,16 @@ contract UnstoppableChallenge is Test {
         // Cannot call monitor contract
         vm.expectRevert("UNAUTHORIZED");
         monitorContract.checkFlashLoan(100e18);
+        
+        // Flashloan works with asset/share relation != 1:1
+        vm.startPrank(deployer);
+        token.transfer(address(vault), 100e18);
+        vm.expectEmit();
+        emit UnstoppableMonitor.FlashLoanStatus(true);
+        monitorContract.checkFlashLoan(100e18);
+        vm.stopPrank();
     }
+
 
     /**
      * CODE YOUR SOLUTION HERE
