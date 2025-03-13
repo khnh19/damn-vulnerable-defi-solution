@@ -6,6 +6,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {DamnValuableToken} from "../../src/DamnValuableToken.sol";
 import {UnstoppableVault, Owned} from "../../src/unstoppable/UnstoppableVault.sol";
 import {UnstoppableMonitor} from "../../src/unstoppable/UnstoppableMonitor.sol";
+import {UnstoppableAttacker} from "../../src/unstoppable/UnstoppableAttacker.sol";
 
 contract UnstoppableChallenge is Test {
     address deployer = makeAddr("deployer");
@@ -91,8 +92,10 @@ contract UnstoppableChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_unstoppable() public checkSolvedByPlayer {
-        
-    }
+        UnstoppableAttacker attacker = new UnstoppableAttacker(address(vault));
+        token.approve(address(attacker), type(uint256).max);
+        attacker.execute();
+    }   
 
     /**
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
