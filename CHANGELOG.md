@@ -1,12 +1,17 @@
 # Changelog
 
-## v4.0.2
+## v4.1.0
 
-- Use Foundry stable in devcontainer
-- Update libraries (OZ Contracts, forge-std)
-- Update instances of `vm.expectRevert`
-- Fix comments
-- Explicitly enable optimizer in `foundry.toml`
+- Updated Wallet Mining challenge to:
+    - Use a new `USER_DEPOSIT_ADDRESS`
+    - Use [CREATEX](https://github.com/pcaversaccio/createx) for deployment of `AuthorizerFactory` and `WalletDeployer`
+    - Set `chief` of `WalletDeployer` in constructor instead of `msg.sender`
+    - Use [Safe Singleton Factory](https://github.com/safe-global/safe-singleton-factory)'s signed transaction for this chain (instead of using `etch` to set the code)
+- Updated devcontainer to use Foundry stable
+- Updated libraries (OZ Contracts, forge-std)
+- Explicitly enabled optimizer in `foundry.toml`
+- Updated instances of `vm.expectRevert`
+- Fixed some comments
 
 ## v4.0.1
 
