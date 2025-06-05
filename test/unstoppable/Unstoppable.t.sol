@@ -98,6 +98,9 @@ contract UnstoppableChallenge is Test {
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
      */
     function _isSolved() private {
+       // Trivial solution: player advanced time beyond the vault's grace period
+       assertLt(block.timestamp, vault.end(), "Vault's grace period has ended");
+
         // Flashloan check must fail
         vm.prank(deployer);
         vm.expectEmit();
