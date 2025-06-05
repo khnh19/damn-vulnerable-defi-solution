@@ -98,6 +98,9 @@ contract UnstoppableChallenge is Test {
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
      */
     function _isSolved() private {
+       // The grace period must not have elapsed
+       assertLt(block.timestamp, vault.end(), "Vault's grace period has ended");
+
         // Flashloan check must fail
         vm.prank(deployer);
         vm.expectEmit();
