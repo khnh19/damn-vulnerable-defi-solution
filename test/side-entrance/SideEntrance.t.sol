@@ -36,9 +36,17 @@ contract SideEntranceChallenge is Test {
     /**
      * VALIDATES INITIAL CONDITIONS - DO NOT TOUCH
      */
-    function test_assertInitialState() public view {
+    function test_assertInitialState() public {
         assertEq(address(pool).balance, ETHER_IN_POOL);
         assertEq(player.balance, PLAYER_INITIAL_ETH_BALANCE);
+        pool.flashLoan(ETHER_IN_POOL);
+    }
+    
+    /**
+    * USED FOR TESTING INITIAL STATE - DO NOT TOUCH
+    */
+    function execute() external payable {
+        (address(pool)).call{value: msg.value}("");
     }
 
     /**
