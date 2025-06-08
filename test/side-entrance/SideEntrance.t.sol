@@ -46,7 +46,7 @@ contract SideEntranceChallenge is Test {
     * USED FOR TESTING INITIAL STATE - DO NOT TOUCH
     */
     function execute() external payable {
-        (address(pool)).call{value: msg.value}("");
+        payable(pool).transfer(msg.value);
     }
 
     /**
