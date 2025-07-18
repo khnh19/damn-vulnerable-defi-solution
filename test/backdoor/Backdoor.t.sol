@@ -22,9 +22,9 @@ contract BackdoorChallenge is Test {
     WalletRegistry walletRegistry;
 
     modifier checkSolvedByPlayer() {
-        vm.startPrank(player, player);
+        vm.startBroadcast(player);
         _;
-        vm.stopPrank();
+        vm.stopBroadcast();
         _isSolved();
     }
 
