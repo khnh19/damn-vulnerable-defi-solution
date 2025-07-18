@@ -37,9 +37,9 @@ contract ShardsChallenge is Test {
     uint256 initialTokensInMarketplace;
 
     modifier checkSolvedByPlayer() {
-        vm.startPrank(player, player);
+        vm.startBroadcast(player);
         _;
-        vm.stopPrank();
+        vm.stopBroadcast();
         _isSolved();
     }
 
